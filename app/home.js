@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, Text, StyleSheet, Button } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { Stack, useRouter, Redirect } from "expo-router";
 import Map from "../components/Map/Map";
 import Profile from "../components/Profile/Profile";
 import * as Location from "expo-location";
 
-const Home = () => {
-  const router = useRouter();
+const Home = ({ route }) => {
+  const { user } = route.params;
   const [showMap, setShowMap] = useState(true);
   const [showProfile, setShowProfile] = useState(false);
   const [location, setLocation] = useState(null);
@@ -42,15 +42,17 @@ const Home = () => {
     setShowMap(true);
   };
 
+  const headerTitle = showMap ? "Map" : "Profile";
+
   return (
     <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           headerShadowVisible: false,
-          headerTitle: "Maps",
+          headerTitle: headerTitle,
         }}
       />
-      {showProfile && <Profile />}
+      {showProfile && <Profile user={user} />}
       {showMap && (
         <View style={styles.mapContainer}>
           <Map location={location} errorMsg={errorMsg} />

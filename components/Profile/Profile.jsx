@@ -2,13 +2,15 @@ import { Text, View, SafeAreaView, Image, ScrollView } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import styles from "./profile.styles";
 
-const Profile = () => {
+const Profile = ({ user }) => {
+  console.log(user);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.titleBar}>
           <Ionicons name="ios-arrow-back" size={24} color="#52575D"></Ionicons>
-          <Ionicons name="md-more" size={24} color="#52575D"></Ionicons>
+          <Ionicons size={24} color="#52575D"></Ionicons>
         </View>
 
         <View style={{ alignSelf: "center" }}>
@@ -19,27 +21,11 @@ const Profile = () => {
               resizeMode="center"
             ></Image>
           </View>
-          <View style={styles.dm}>
-            <MaterialIcons
-              name="chat"
-              size={18}
-              color="#DFD8C8"
-            ></MaterialIcons>
-          </View>
-          <View style={styles.active}></View>
-          <View style={styles.add}>
-            <Ionicons
-              name="ios-add"
-              size={48}
-              color="#DFD8C8"
-              style={{ marginTop: 6, marginLeft: 2 }}
-            ></Ionicons>
-          </View>
         </View>
 
         <View style={styles.infoContainer}>
           <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>
-            Julie
+            {Julie}
           </Text>
           <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>
             Photographer
